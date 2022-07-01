@@ -53,6 +53,7 @@ Plug 'git@github.com:joshdick/onedark.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'preservim/nerdtree'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+Plug 'eslint/eslint'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-airline/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
