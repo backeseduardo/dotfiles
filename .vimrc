@@ -20,6 +20,9 @@ if !has('gui_running')
 endif
 " Enable true colors support
 set termguicolors
+" When scrolling keep an offset of the begin and end of the file
+set scrolloff=8
+set sidescrolloff=8
 
 set nocompatible
 set encoding=utf-8
