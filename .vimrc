@@ -38,14 +38,6 @@ set cmdheight=2
 set updatetime=300
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("nvim-0.5.0") || has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
 set nowrap
 
 call plug#begin('~/.vim/plugged')
@@ -60,6 +52,7 @@ Plug 'eslint/eslint'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-airline/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
@@ -71,8 +64,11 @@ nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
+let NERDTreeShowHidden=1
+
 "====== COC =========
 let g:coc_global_extensions = [
+  \ 'coc-snippets',
   \ 'coc-tsserver',
   \ 'coc-eslint',
   \ 'coc-prettier',
@@ -233,3 +229,4 @@ let g:ctrlp_custom_ignore = {
 " Ignore files in .gitignore
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_use_caching=0
