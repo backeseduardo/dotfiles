@@ -59,10 +59,21 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Open the current file in the default program
-nmap <leader>x :!open %<cr><cr>
+noremap <leader>x :!open %<cr><cr>
 
 " Toggle off search highlight when ESC is pressed
-map <esc> :noh<cr>
+noremap <esc> :noh<cr>
+
+" Go to tab by number
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
 
 call plug#begin('~/.vim/plugins')
 
