@@ -133,5 +133,7 @@ export PATH=$PATH:/usr/local/go/bin
 ### /GO ###
 
 alias cat="batcat"
-alias vim="nvim"
 alias open="xdg-open"
+alias vim="nvim"
+alias v="nvim"
+alias vp="nvim -p"
