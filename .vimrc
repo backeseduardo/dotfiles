@@ -49,7 +49,15 @@ set shortmess+=c
 set signcolumn=yes
 "endif
 
-set nowrap
+"set nowrap
+
+" On pressing tab, insert 2 spaces
+set expandtab
+" show existing tab with 2 spaces width
+set tabstop=2
+set softtabstop=2
+" when indenting with '>', use 2 spaces width
+set shiftwidth=2
 
 " Allow gf to open non-existing files
 map gf :edit <cfile><cr>
@@ -81,7 +89,7 @@ call plug#begin('~/.vim/plugins')
 source ~/.config/nvim/plugins/onedark.vim
 source ~/.config/nvim/plugins/vim-polyglot.vim
 source ~/.config/nvim/plugins/nerdtree.vim
-source ~/.config/nvim/plugins/vim-prettier.vim
+"source ~/.config/nvim/plugins/vim-prettier.vim
 source ~/.config/nvim/plugins/eslint.vim
 source ~/.config/nvim/plugins/coc.vim
 source ~/.config/nvim/plugins/vim-airline.vim
