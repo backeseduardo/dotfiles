@@ -58,6 +58,8 @@ set tabstop=2
 set softtabstop=2
 " when indenting with '>', use 2 spaces width
 set shiftwidth=2
+" Sync clipboard between OS and Neovim.
+set clipboard+=unnamedplus
 
 " Allow gf to open non-existing files
 map gf :edit <cfile><cr>
