@@ -6,7 +6,16 @@ return {
     'nvim-tree/nvim-web-devicons',
   },
   config = function()
-    local telescope = require("telescope").setup({})
+    local telescope = require("telescope").setup({
+      defaults = {
+        file_ignore_patterns = { "node_modules", ".git" }
+      },
+      pickers = {
+        find_files = {
+          hidden = true
+        }
+      }
+    })
     local builtin = require('telescope.builtin')
     vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = 'Seach Files' })
     vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = 'Search by Grep' })
