@@ -8,7 +8,7 @@ fi
 #
 # Check for connected monitors
 if xrandr | grep -q "^DP-1 connected"; then
-    xrandr --output DP-1 --auto --output eDP-1 --off
+    xrandr --output DP-1 --auto --primary --output eDP-1 --off
     if [ $? -eq 0 ]; then
         echo "Monitor configuration applied successfully."
     else
