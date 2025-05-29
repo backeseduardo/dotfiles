@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Check if xrandr is installed
+if ! command -v xrandr &> /dev/null; then
+    echo "Error: xrandr is not installed. Please install it (e.g., 'sudo apt install x11-xserver-utils' or 'sudo pacman -S xorg-xrandr')."
+    exit 1
+fi
+#
+# Check for connected monitors
+if xrandr | grep -q "^DP-1 connected"; then
+    xrandr --output DP-1 --auto --output eDP-1 --off
+    if [ $? -eq 0 ]; then
+        echo "Monitor configuration applied successfully."
+    else
+        echo "Error: Failed to apply monitor configuration."
+        exit 1
+    fi
+fi

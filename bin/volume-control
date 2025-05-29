@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Script para ajustar o volume com limite de 100% (65536)
+
+# Função para obter o volume atual em porcentagem
+get_volume() {
+    pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '\d+%' | head -1 | tr -d '%'
+}
+
+# Função para limitar o volume
+set_volume() {
+    local target_volume=$1
+    # Limitar a 100% (65536)
+    if [ "$target_volume" -gt 100 ]; then
+        target_volume=100
+    elif [ "$target_volume" -lt 0 ]; then
+        target_volume=0
+    fi
+    pactl set-sink-volume @DEFAULT_SINK@ "${target_volume}%"
+}
+
+# Ação baseada no argumento
+case "$1" in
+    up)
+        current_volume=$(get_volume)
+        new_volume=$((current_volume + 5))
+        set_volume "$new_volume"
+        #notify-send "Volume" "Volume ajustado para $(get_volume)%"
+        ;;
+    down)
+        current_volume=$(get_volume)
+        new_volume=$((current_volume - 5))
+        set_volume "$new_volume"
+        #notify-send "Volume" "Volume ajustado para $(get_volume)%"
+        ;;
+    mute)
+        pactl set-sink-mute @DEFAULT_SINK@ toggle
+        #if pactl get-sink-mute @DEFAULT_SINK@ | grep -q "yes"; then
+        #    notify-send "Volume" "Mudo"
+        #else
+        #    notify-send "Volume" "Desmutado, volume: $(get_volume)%"
+        #fi
+        ;;
+    *)
+        echo "Uso: $0 {up|down|mute}"
+        exit 1
+        ;;
+esac

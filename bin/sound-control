@@ -1,0 +1,3 @@
+#!/bin/bash
+
+yad --notification --image="/usr/share/icons/Humanity/apps/16/preferences-desktop-sound.svg" --command="gnome-control-center sound" --listen

@@ -13,11 +13,11 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+#font pango:monospace 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+font pango:DejaVu Sans Mono 10
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -30,22 +30,29 @@ exec --no-startup-id dex --autostart --environment i3
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
+# Sound tray
+exec --no-startup-id ~/bin/sound-control
+
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
 # Config monitor
-exec ~/scripts/monitor-output
+exec --no-startup-id ~/bin/monitor-output
+
+# Wallpaper
+exec --no-startup-id sleep 5 && feh --bg-scale /usr/share/backgrounds/pop/kate-hazen-unleash-your-robot.png
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 #bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id ~/scripts/volume-control up && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/bin/volume-control up && $refresh_i3status
 #bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id ~/scripts/volume-control down && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/bin/volume-control down && $refresh_i3status
 #bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id ~/scripts/volume-control mute && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id ~/bin/volume-control mute && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+#bindsym --release button1 volume exec --no-startup-id gnome-control-center sound
 
 # Brightness
 #bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
@@ -63,7 +70,7 @@ bindsym $mod+q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec --no-startup-id dmenu_run
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -fn 'pango:Dejavu Sans Mono'"
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -200,7 +207,9 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  position top
   status_command i3status
+  position top
+  font pango:DejaVu Sans Mono 10
+  separator_symbol "|"
 }
 
