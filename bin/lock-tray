@@ -1,3 +1,2 @@
 #!/bin/bash
-yad --notification --image="/usr/share/icons/Pop/16x16/status/locked.svg" --command="i3lock -c 000000" --listen
-#yad --notification --image="/usr/share/icons/Pop/16x16/status/locked.svg" --command="i3lock -c 000000 -i /usr/share/backgrounds/pop/kate-hazen-unleash-your-robot.png --image-fill" --listen
+yad --notification --image="/home/backes/bin/icons/locked.svg" --command="i3lock -c 000000" --listen
