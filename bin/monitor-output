@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Check if xrandr is installed
 if ! command -v xrandr &> /dev/null; then
     echo "Error: xrandr is not installed. Please install it (e.g., 'sudo apt install x11-xserver-utils' or 'sudo pacman -S xorg-xrandr')."

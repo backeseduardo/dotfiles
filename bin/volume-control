@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Script para ajustar o volume com limite de 100% (65536)
 
 # Função para obter o volume atual em porcentagem

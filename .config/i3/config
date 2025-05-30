@@ -33,6 +33,9 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # Sound tray
 exec --no-startup-id ~/bin/sound-control
 
+# Lock screen
+exec --no-startup-id ~/bin/lock-tray
+
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
@@ -55,15 +58,15 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 #bindsym --release button1 volume exec --no-startup-id gnome-control-center sound
 
 # Brightness
-#bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
-#bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec alacritty --config-file ~/.config/alacritty/alacritty.yml
 
 # kill focused window
 bindsym $mod+q kill
