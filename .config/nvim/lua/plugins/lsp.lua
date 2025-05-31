@@ -1,13 +1,30 @@
 return {
   {
-    "mason-org/mason-lspconfig.nvim",
+    "mason-org/mason.nvim",
     opts = {},
     dependencies = {
-      { 
-        "mason-org/mason.nvim",
-        opts = {}
-      },
+      "mason-org/mason-lspconfig.nvim",
     },
+    config = function()
+		  local mason = require("mason")
+		  local mason_lspconfig = require("mason-lspconfig")
+
+      mason.setup({
+        ui = {
+          icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗",
+          },
+        },
+      })
+
+      mason_lspconfig.setup({
+        ensure_installed = {
+
+        }
+      })
+    end,
   },
   {
     'neovim/nvim-lspconfig',
@@ -24,8 +41,9 @@ return {
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       local lsp_keymaps = function()
         vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer = 0, desc = "Displays hover information for the symbol under the cursor in a floating window, showing documentation or details provided by the LSP."})
-        vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions, {buffer = 0, desc = "Goto Definition"})
+        vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", {buffer = 0, desc = "Goto Definition"})
         vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {buffer = 0, desc = "Goto Declaration"})
+        vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", {buffer = 0, desc = "Goto Implementation"})
         vim.keymap.set("n", "gtd", require("telescope.builtin").lsp_type_definitions, {buffer = 0, desc = "Goto Type Definition"})
         -- vim.keymap.set("n", "<leader>df", vim.diagnostic.goto_next, {buffer = 0, desc = "Moves the cursor to the next diagnostic (error, warning, etc.) in the current buffer, as reported by the LSP."})
         -- vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {buffer = 0, desc = "Moves the cursor to the previous diagnostic (error, warning, etc.) in the current buffer, as reported by the LSP."})
@@ -33,7 +51,6 @@ return {
         vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer = 0, desc = "Rename"})
         vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer = 0, desc = "Code Action"})
         vim.keymap.set("n", "<leader>gr", require("telescope.builtin").lsp_references, {buffer = 0, desc = "Goto References"})
-        vim.keymap.set("n", "gi", require("telescope.builtin").lsp_implementations, {buffer = 0, desc = "Goto Implementation"})
         vim.keymap.set("n", "<leader>d", function()
           vim.diagnostic.open_float(nil, {focusable = false, scope = "line", --[[max_width = 80, --]] border = "single"})
         end, {buffer = 0, desc = "Current line diagnostics"})
